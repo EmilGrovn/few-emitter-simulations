@@ -19,14 +19,14 @@ from matplotlib import rcParams
 
 ###parameters
 #system
-N_em=1
-g=0.3 #coupling constant [THz]
+N_em=2
+g=0.1 #coupling constant [THz]
 #g=0.3*np.sqrt(2)
 #g=6
-kappa=0.1 #decay rate [THz] for coupling from cavity to environment
+kappa=0.02 #decay rate [THz] for coupling from cavity to environment
 pump=0
-gamma=0.01
-gamma2=3
+gamma=0.012
+gamma2=1
 pump_logmin=-3
 pump_logmax=3
 #numerical
@@ -36,4 +36,3 @@ N_Hilbert=10
 #pump_sweep_fixed_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2,N_Hilbert)#get nP and g(0)^(2)
 pump_sweep_variable_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2)
 pump_sweep_spec(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2,N_Hilbert)#get spectrum
-

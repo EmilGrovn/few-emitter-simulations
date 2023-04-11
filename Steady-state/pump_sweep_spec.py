@@ -16,7 +16,7 @@ def pump_sweep_spec(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2,N_Hilbert)
     Spectrum_matrix=[[]]*len(pumpList)
     #get N_Hilbert from prior test
     tol=10
-    out_ss=np.load('.\data\{}-emitter_pump-sweep_ss_NH_intelligent_g={}_kap={}_tol={}.npz'.format(N_em,g,kappa,tol))
+    out_ss=np.load('/home/niflheim/s183774/few-emitter-simulations/Steady-state/data/{}-emitter_pump-sweep_ss_NH_intelligent_g={}_kap={}_gam={}_gam2={}_tol={}.npz'.format(N_em,g,kappa,gamma,gamma2,tol))
     N_Hilb_list=out_ss['N_H_list']
     
     for i,pump in enumerate(pumpList):
@@ -25,4 +25,4 @@ def pump_sweep_spec(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2,N_Hilbert)
         wlist, Spectrum = getSteadyStateSpectrum(N_em=N_em, g=g, kappa=kappa, pump=pump, gamma=gamma, gamma2=gamma2, N_Hilbert=N_Hilbert)
         Spectrum_matrix[i]=Spectrum/np.max(Spectrum)
     #save
-    np.savez('.\data\{}-emitter_pump-sweep_spectrum_g={}_kap={}_gam={}_gam2={}_tol={}.npz'.format(N_em,g,kappa,gamma,gamma2,tol),w=wlist,spec=Spectrum_matrix,pump_over_g_save=pump_over_g_List)
+    np.savez('/home/niflheim/s183774/few-emitter-simulations/Steady-state/data/{}-emitter_pump-sweep_spectrum_g={}_kap={}_gam={}_gam2={}_tol={}.npz'.format(N_em,g,kappa,gamma,gamma2,tol),w=wlist,spec=Spectrum_matrix,pump_over_g_save=pump_over_g_List)
