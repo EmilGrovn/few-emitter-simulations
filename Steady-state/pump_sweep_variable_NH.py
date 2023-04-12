@@ -54,5 +54,5 @@ def pump_sweep_variable_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2):
             print((aMax.dag()*rho_ss*aMax).shape)
             cav_capacity_occ[i]=(aMax.dag()*rho_ss*aMax).tr()
     #save
-    np.savez('/home/niflheim/s183774/few-emitter-simulations/Steady-state/data/{}-emitter_pump-sweep_ss_NH_intelligent_g={}_kap={}_gam={}_gam2={}_tol={}.npz'.format(N_em,g,kappa,gamma,gamma2,tol),g2=g2List,nP=npList,pump_over_g_save=pump_over_g_List,N_H_list=N_Hilbert_list,cav_conv=cav_capacity_occ)
+    np.savez('./data/{}-emitter_pump-sweep_ss_NH_intelligent_g={}_kap={}_gam={}_gam2={}_tol={}.npz'.format(N_em,g,kappa,gamma,gamma2,tol),g2=g2List,nP=npList,pump_over_g_save=pump_over_g_List,N_H_list=N_Hilbert_list,cav_conv=cav_capacity_occ)
     print(cav_capacity_occ)
