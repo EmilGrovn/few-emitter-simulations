@@ -26,9 +26,9 @@ g=0.1 #coupling constant [THz]
 kappa=0.02 #decay rate [THz] for coupling from cavity to environment
 pump=0
 gamma=0.012
-gamma2=2/np.sqrt(2)
+gamma2=1/np.sqrt(2)
 pump_logmin=-3
-pump_logmax=3
+pump_logmax=0
 #numerical
 N_Hilbert=10
 
