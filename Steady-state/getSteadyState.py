@@ -75,7 +75,7 @@ def getSteadyState(N_em, g, kappa, pump, gamma, gamma2, N_Hilbert):
     for i in range(N_em):
         measure=(-sigmaz()+1)/2
         if i==0:
-            e_occ=tensor(identity(2))
+            e_occ=tensor(measure)
         else:
             e_occ=tensor(identity(2))
         for j in range(1,N_em):
@@ -85,4 +85,4 @@ def getSteadyState(N_em, g, kappa, pump, gamma, gamma2, N_Hilbert):
                 e_occ=tensor(e_occ,identity(2))
         e_occ=tensor(e_occ,identity(N_Hilbert))
     
-    return rho_ss, c_occ, c_occ_power2
+    return rho_ss, c_occ, c_occ_power2, e_occ
