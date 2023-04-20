@@ -19,14 +19,14 @@ rcParams['axes.titlepad'] = 20
 
 ###PARAMETERS
 #system
-N_em=2
+N_em=1
 g=0.1 #coupling constant [THz]
 #g=2
 #g=6
-kappa=0.02 #decay rate [THz] for coupling from cavity to environment
+kappa=0.02/2 #decay rate [THz] for coupling from cavity to environment
 #pump=0
 gamma=0.012
-gamma2=1/np.sqrt(2)
+gamma2=2/np.sqrt(2)
 correctLW=True
 #gamma2=1/sqrt(2)
 #pump_logmin=-3
@@ -48,6 +48,7 @@ cav_conv_list=out_ss['cav_conv']
 N_H_list=out_ss['N_H_list']
 #print(nP_list_ss[max(cav_conv_list)==cav_conv_list])
 #print(N_H_list[max(cav_conv_list)==cav_conv_list])
+print('ne-list', ne_list)
 print(max(nP_list_ss))
 print(nP_list_ss)
 print(N_H_list)
@@ -76,8 +77,8 @@ linewidth=np.zeros(len(pg_list_ss))
 if correctLW==False:
     for i in np.arange(0,len(pg_list_ss)):
         spec_i=spectrum_matrix[i,:]
-        wlistAboveHM=wlist[spec_i>0.5]
-        specAboveHM=spec_i[spec_i>0.5]
+        wlistAboveHM=wlist[spec_i>=0.5]
+        specAboveHM=spec_i[spec_i>=0.5]
 
         linewidth[i]=np.max(wlistAboveHM)-np.min(wlistAboveHM)
         #check for multiple peaks
@@ -94,20 +95,20 @@ if correctLW==False:
 if correctLW==True:
     for i in np.arange(0,len(pg_list_ss)):
         spec_i=spectrum_matrix[i,:]
-        wlistAboveHM=wlist[spec_i>0.5]
-        specAboveHM=spec_i[spec_i>0.5]
+        wlistAboveHM=wlist[spec_i>=0.5]
+        specAboveHM=spec_i[spec_i>=0.5]
         linewidth[i]=np.max(wlistAboveHM)-np.min(wlistAboveHM)
 
         if len(specAboveHM[wlistAboveHM==0])==0:
             print('Oh')
             #then there are two seperate peaks for negative and positive omega
-            linewidth[i]=np.max(wlistAboveHM[wlistAboveHM>0])-np.min(wlistAboveHM[wlistAboveHM>0])
+            linewidth[i]=np.max(wlistAboveHM[wlistAboveHM>=0])-np.min(wlistAboveHM[wlistAboveHM>=0])
             print(linewidth[i])
         elif specAboveHM[wlistAboveHM==0]<1:
             print('Oh',i,pg_list_ss[i])
             #then there are two seperate peaks for negative and positive omega
-            wlistAboveHMPosOmega=wlistAboveHM[wlistAboveHM>0]
-            specAboveHMPosOmega=specAboveHM[wlistAboveHM>0]
+            wlistAboveHMPosOmega=wlistAboveHM[wlistAboveHM>=0]
+            specAboveHMPosOmega=specAboveHM[wlistAboveHM>=0]
 
             linewidth[i]=2*(np.max(wlistAboveHMPosOmega)-wlistAboveHMPosOmega[np.max(specAboveHMPosOmega)==specAboveHMPosOmega])
             print(linewidth[i])
@@ -217,6 +218,8 @@ plt.subplots_adjust(left=0.13,
                     wspace=0.4, 
                     hspace=0.4)
 plt.savefig('./plots/superplot_{}-emitter_pump-sweep_g={}_kap={}_gam={}_gam2={}_tol={}.pdf'.format(N_em,g,kappa,gamma,gamma2,tol))
+np.savez('./data/{}-emitter_pump-sweep_linewidth_g={}_kap={}_gam={}_gam2={}_tol={}.npz'.format(N_em,g,kappa,gamma,gamma2,tol),linewidth=linewidth)
 #plt.show()
 
 print((wlist[1]-wlist[0])/g)
+print(max(wlist)/g)

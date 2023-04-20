@@ -19,16 +19,16 @@ from matplotlib import rcParams
 
 ###parameters
 #system
-N_em=2
+N_em=1
 g=0.1 #coupling constant [THz]
 #g=0.3*np.sqrt(2)
 #g=6
-kappa=0.02 #decay rate [THz] for coupling from cavity to environment
-pump=0
+kappa=0.02/2 #decay rate [THz] for coupling from cavity to environment
+#pump=0
 gamma=0.012
-gamma2=1/np.sqrt(2)
+gamma2=2/np.sqrt(2)
 pump_logmin=-3
-pump_logmax=0
+pump_logmax=3
 #numerical
 N_Hilbert=10
 
