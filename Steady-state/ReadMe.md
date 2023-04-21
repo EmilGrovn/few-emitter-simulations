@@ -1,7 +1,7 @@
 # Steady-State
 Contains scripts for steady state simulations.
 
-##Generating data
+## Generating data
 perform_pump_sweep: 
 in this script, you choose your system: 
 physical input parameters (N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2) (where logmin/max gives min/max value of pump/g, which we want to sweep over)
@@ -55,7 +55,7 @@ input: physical parameters and N_Hilbert
       Should consider: how do we choose frequencylist best
 return: frequencylist and spectrum
 
-##analysing data
+## analysing data
 superplot_regimes
 
 comparison of N emitter to effective 1-emitter
