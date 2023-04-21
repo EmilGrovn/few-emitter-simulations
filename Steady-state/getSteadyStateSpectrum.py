@@ -41,7 +41,7 @@ def getSteadyStateSpectrum(N_em, g, kappa, pump, gamma, gamma2, N_Hilbert):
     #create tlist
     N=200
     #Ww=2/0.3*g
-    Ww=g
+    Ww=g/2
     #Ww=3*g*np.sqrt(N_em)
     dw=Ww/N
     #tlist = np.arange(0,Tw,dt)

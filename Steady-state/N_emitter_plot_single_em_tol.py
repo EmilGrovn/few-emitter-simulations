@@ -46,10 +46,10 @@ for i,N_em in enumerate(N_em_list):
     g2_matrix[i+len(N_em_list)]=g2_list_ss
     nP_matrix[i+len(N_em_list)]=nP_list_ss
     #linewidth
-    #out_ss=np.load('./data/{}-emitter_pump-sweep_linewidth_g={}_kap={}_gam={}_gam2={}_tol={}.npz'.format(N_em,g,kappa,gamma,gamma2,tol))
-    #linewidth_matrix[i]=out_ss['linewidth']
-    #out_ss=np.load('./data/{}-emitter_pump-sweep_linewidth_g={}_kap={}_gam={}_gam2={}_tol={}.npz'.format(1,g,kappa/N_em,gamma,gamma2,tol))
-    #linewidth_matrix[i+len(N_em_list)]=out_ss['linewidth']
+    out_ss=np.load('./data/{}-emitter_pump-sweep_linewidth_g={}_kap={}_gam={}_gam2={}_tol={}.npz'.format(N_em,g,kappa,gamma,gamma2,tol))
+    linewidth_matrix[i]=out_ss['linewidth']
+    out_ss=np.load('./data/{}-emitter_pump-sweep_linewidth_g={}_kap={}_gam={}_gam2={}_tol={}.npz'.format(1,g,kappa/N_em,gamma,gamma2,tol))
+    linewidth_matrix[i+len(N_em_list)]=out_ss['linewidth']
     legend[i]='{}-emitter'.format(N_em)
     legend[i+len(N_em_list)]=r'{}-emitter with $\kappa/N$ for $N=${}'.format(1,N_em)
 style=['b*','g*','r*']
@@ -64,8 +64,8 @@ for i in range(len(N_em_list)*2):
     ax1.loglog(pg_list_ss, nP_matrix[i],style1[i])
 for i in range(len(N_em_list)*2):
     ax2.loglog(pg_list_ss, g2_matrix[i],style[i])
-#for i in range(len(N_em_list)*2):
-#    ax3.loglog(pg_list_ss, linewidth_matrix[i],style[i])
+for i in range(len(N_em_list)*2):
+    ax3.loglog(pg_list_ss, linewidth_matrix[i]*(i+1),style[i])
 #specifications
 ax1.grid()
 ax2.grid()
