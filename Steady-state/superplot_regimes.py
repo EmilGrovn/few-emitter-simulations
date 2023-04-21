@@ -3,10 +3,6 @@ from cmath import sqrt
 from qutip import *
 import numpy as np
 import matplotlib.pyplot as plt
-#import implementation of solving single-emitter
-from pump_sweep_fixed_NH import pump_sweep_fixed_NH
-from pump_sweep_variable_NH import pump_sweep_variable_NH 
-from pump_sweep_spec import pump_sweep_spec
 ###
 #pretty plot
 from matplotlib import rcParams

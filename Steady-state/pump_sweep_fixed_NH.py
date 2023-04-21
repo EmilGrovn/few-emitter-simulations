@@ -17,12 +17,11 @@ def pump_sweep_fixed_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2,N_Hilb
     g2List=np.zeros(len(pumpList))
     for i,pump in enumerate(pumpList):
         print(i)
-        rho_ss, c_occ, c_occ_p2 = getSteadyState(N_em=N_em, g=g, kappa=kappa, pump=pump, gamma=gamma,gamma2=gamma2, N_Hilbert=N_Hilbert)
+        rho_ss, c_occ, c_occ_p2, emitter_occ_list = getSteadyState(N_em=N_em, g=g, kappa=kappa, pump=pump, gamma=gamma,gamma2=gamma2, N_Hilbert=N_Hilbert)
         nP=(c_occ*rho_ss).tr()
         nP_p2=(c_occ_p2*rho_ss).tr()
         g2=(nP_p2-nP)/nP**2
         npList[i]=nP
-        g2=(nP_p2-nP)/nP**2
         g2List[i]=g2
     #save
     np.savez('.\data\{}-emitter_pump-sweep_ss_NH={}_g={}.npz'.format(N_em,N_Hilbert,g),g2=g2List,nP=npList,pump_over_g_save=pump_over_g_List)

@@ -38,42 +38,17 @@ def getSteadyState(N_em, g, kappa, pump, gamma, gamma2, N_Hilbert):
         C_list[3*i+2]=C_gamma
         C_list[3*i+3]=C_gamma2
 
-    # #initial state operator
-    # g_state=basis(2,0)
-    # e_state=basis(2,1)
-    # c1=basis(N_Hilbert,0)
-    # #c2=basis(N_Hilbert,1)
-    # #construct state where emitter 1 is occupied
-    # rho0=e_state
-    # for i in range(1,N_em):
-    #     rho0=tensor(rho0,g_state)
-    # rho0=tensor(rho0,c1)
+    #calculate steady state
+    rho_ss = steadystate(H, C_list)
 
-    #operators we want to calculate
-    # operator_list=[None]*(2+N_em)
+    #operators we want to constracts
+    emitter_occ_list=[None]*(N_em)
     c_occ=a.dag()*a#cavity occupied
     c_occ_power2=c_occ*c_occ
-    # operator_list[0]=c_occ
-    # operator_list[1]=c_occ_power2
-    # for i in range(N_em):
-    #     measure=(-sigmaz()+1)/2
-    #     if i==0:
-    #         e_occ=tensor(measure)
-    #     else:
-    #         e_occ=tensor(identity(2))
-    #     for j in range(1,N_em):
-    #         if j==i:
-    #             e_occ=tensor(e_occ,measure)
-    #         else:
-    #             e_occ=tensor(e_occ,identity(2))
-    #     e_occ=tensor(e_occ,identity(N_Hilbert))
-    #     operator_list[i+2]=e_occ
 
-    #calculate
-    rho_ss = steadystate(H, C_list)
-    #construct operator
+    #construct emitter occupation operator
     for i in range(N_em):
-        measure=(-sigmaz()+1)/2
+        measure=(-sigmaz()+1)/2 #measures whether the emitter is occupied
         if i==0:
             e_occ=tensor(measure)
         else:
@@ -84,5 +59,6 @@ def getSteadyState(N_em, g, kappa, pump, gamma, gamma2, N_Hilbert):
             else:
                 e_occ=tensor(e_occ,identity(2))
         e_occ=tensor(e_occ,identity(N_Hilbert))
+        emitter_occ_list[i]=e_occ
     
-    return rho_ss, c_occ, c_occ_power2, e_occ
+    return rho_ss, c_occ, c_occ_power2, emitter_occ_list
