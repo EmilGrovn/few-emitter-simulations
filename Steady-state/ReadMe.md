@@ -55,7 +55,13 @@ input: physical parameters and N_Hilbert
       Should consider: how do we choose frequencylist best
 return: frequencylist and spectrum
 
+getLinewidth. Function
+input: physical parameters
+imports spectrum data and calculates and saves linewidth
+
 ## analysing data
+plot_linewidths: from generated data; makes a single plot of the linewidth with a lot of comparison
+
 superplot_regimes
 
 comparison of N emitter to effective 1-emitter
