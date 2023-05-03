@@ -43,16 +43,17 @@ for i in range(3):
         #axs[i,j].set(xlabel=r'$P [THz]$') 
         #axs[i,j].set(ylabel=r'$(\omega-\omega_{eg})$')
         axs[i,j].contourf(np.log10(pump_list), wlist,(spectrum_matrix).transpose(), 20, cmap='RdGy')
-        plt.colorbar(plt.cm.ScalarMappable(norm=None, cmap='RdGy'),ax=axs[i,j])
-        #axs[i,j].axes.xaxis.set_ticklabels([])
-        axs[i,j].text(0, 0, '$\kappa$={} THz'.format(kappa))
+        #plt.colorbar(plt.cm.ScalarMappable(norm=None, cmap='RdGy'),ax=axs[i,j])
+        if i==2:
+            axs[i,j].axes.set_xticks([-2,-1,0], labels=[r'$10^{-2}$',r'$10^{-1}$',r'$10^0$'])
+        axs[i,j].text(min(np.log10(pump_list)), max(wlist)*1.1, '$\kappa$={} THz'.format(kappa))
         
 
 #augmentation
 TITLE='{}-emitter. $\gamma_D$={:.2f} THz. $g$={:.2f} THz'.format(N_em,gammaD,g)
 fig.suptitle(TITLE)
-#fig.supxlabel(r'$P [THz]$')
-#fig.supylabel(r'$(\omega-\omega_{eg})$')
+fig.supxlabel(r'$P$ [THz]')
+fig.supylabel(r'$(\omega-\omega_{eg})\,\mathrm{[ps^{-1}]}$')
 #ax1.set(xlim=[min(pump_list),max(pump_list)])
 
 #save plot

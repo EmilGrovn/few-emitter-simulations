@@ -31,7 +31,7 @@ N_Hilbert=10
 #for gammaD in [0,0.01,0.1,0.5,1]:
 #    gamma2=gammaD/np.sqrt(2)
 #[0.1,0.5,1.0,1.1,1.5,2.0,4.0,8.0,16.0]:
-for kappa in [2.0,4.0,8.0,16.0]:
-    pump_sweep_variable_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2)
-    pump_sweep_spec(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2)#get spectrum
+for kappa in [0.1,0.5,1.0,1.1,1.5,2.0,4.0,8.0,16.0]:
+    #pump_sweep_variable_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2)
+    #pump_sweep_spec(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2)#get spectrum
     getLinewidth(N_em, g, kappa, gamma, gamma2)
