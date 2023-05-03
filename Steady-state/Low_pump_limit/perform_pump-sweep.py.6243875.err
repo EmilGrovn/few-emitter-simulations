@@ -1,0 +1,2 @@
+/var/spool/slurmd/job6243875/slurm_script: line 10:  1575 Killed                  python3 perform_pump-sweep.py
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=6243875.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
