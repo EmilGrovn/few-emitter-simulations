@@ -18,7 +18,7 @@ rcParams['axes.titlepad'] = 20
 N_em=1
 g=2 #coupling constant [THz]
 kappa=0.02 #decay rate [THz] for coupling from cavity to environment
-gamma=0*0.012
+gamma=0
 gamma2=0/np.sqrt(2)
 gammaD=np.sqrt(2)*gamma2
 
@@ -37,8 +37,7 @@ for i in range(3):
         out_ss=np.load('./data/{}-emitter_pump-sweep_ss_NH_intelligent_g={}_kap={}_gam={}_gam2={}.npz'.format(N_em,g,kappa,gamma,gamma2))
         nP_list_ss=out_ss['nP']
         neMatrix=out_ss['neMatrix']
-        pg_list_ss=out_ss['pump_over_g_save']
-        pump_list=g*pg_list_ss
+        pump_list=out_ss['pumpList']
 
         #analytiske linjebredder
         gammaR=4*g**2/(pump_list+gamma+gammaD+kappa)
@@ -52,7 +51,7 @@ for i in range(3):
         axs[i,j].loglog(pump_list, linewidth/(2*np.pi),'bo',mfc='none')    #plot linewidth
         axs[i,j].loglog(pump_list, ST_unmodified/(2*np.pi),'g')    #plot ST (regime 2) linewidth
         axs[i,j].loglog(pump_list, ST_linewidth/(2*np.pi),'g:')    #plot ST (regime 2) linewidth
-        axs[i,j].loglog(pump_list, kappa*np.ones((len(pg_list_ss)))/(2*np.pi),'b')  #simple approx
+        axs[i,j].loglog(pump_list, kappa*np.ones((len(pump_list)))/(2*np.pi),'b')  #simple approx
         axs[i,j].loglog(pump_list, Reg1_linewidth/(2*np.pi),'r')  #regime 1 linewidth
         axs[i,j].loglog(pump_list, Reg3_linewidth/(2*np.pi),'k')  #regime 3 linewidth
 
@@ -61,20 +60,20 @@ for i in range(3):
         #axs[i,j].contourf(np.log10(pump_list), wlist,(spectrum_matrix).transpose(), 20, cmap='RdGy')
         #plt.colorbar(plt.cm.ScalarMappable(norm=None, cmap='RdGy'),ax=axs[i,j])
         if i==2:
-            axs[i,j].axes.set_xticks([0.01,0.1,1], labels=[r'$10^{-2}$',r'$10^{-1}$',r'$10^0$'])
+            axs[i,j].axes.set_xticks([0.0001,0.001,0.01,0.1], labels=[r'$10^{-4}$',r'$10^{-3}$',r'$10^{-2}$',r'$10^{-1}$'])
         if j==0:
             pass
         Min=min(linewidth)/(2*np.pi)
         Max=max(linewidth)*1.1/(2*np.pi)
         #axs[i,j].axes.set_ylim(Min,Max)
-        axs[i,j].text(0.01, Max*1.02, '$\kappa$={} THz'.format(kappa))
+        axs[i,j].text(0.0001, axs[i,j].axes.get_ylim()[1]*1.1, '$\kappa$={} THz'.format(kappa))
         
 
 #augmentation
-TITLE='{}-emitter. $\gamma_D$={:.2f} THz. $g$={:.2f} THz'.format(N_em,gammaD,g)
+TITLE='{}-emitter. $g$={:.2f} THz. $\gamma_A$={:.2f} THz. $\gamma_D$={:.2f} THz.'.format(N_em,g,gamma,gammaD)
 fig.suptitle(TITLE)
 fig.supxlabel(r'$P$ [THz]')
-fig.supylabel(r'FWHM')
+fig.supylabel(r'FWHM [THz]')
 #ax1.set(xlim=[min(pump_list),max(pump_list)])
 
 #save plot

@@ -8,10 +8,10 @@ def getLinewidth(N_em, g, kappa, gamma, gamma2):
     out_ss=np.load('./data/{}-emitter_pump-sweep_spectrum_g={}_kap={}_gam={}_gam2={}.npz'.format(N_em,g,kappa,gamma,gamma2))
     wlist=out_ss['w']
     spectrum_matrix=out_ss['spec']
-    pg_list_ss=out_ss['pump_over_g_save']
+    pump_list_ss=out_ss['pumpList']
     ## calculate linewidth ##
-    linewidth=np.zeros(len(pg_list_ss))
-    for i in np.arange(0,len(pg_list_ss)):
+    linewidth=np.zeros(len(pump_list_ss))
+    for i in np.arange(0,len(pump_list_ss)):
         spec_i=spectrum_matrix[i,:]     #choose spectrum for given pump
         #use symmetry
         wlistPos=wlist[wlist>=0]
@@ -29,7 +29,8 @@ def getLinewidth(N_em, g, kappa, gamma, gamma2):
         currentIndex=maxIndex
         wInc2=wlistPos[currentIndex+1]
         specInc2=specPos[currentIndex+1]
-        while specInc2 >=0.5 and specInc2<specInc:
+        boundary=max(wlistPos)
+        while specInc2 >=0.5 and specInc2<specInc and wInc2<boundary:
             currentIndex+=1
             wInc=wInc2
             wInc2=wlistPos[currentIndex+1]
@@ -42,7 +43,7 @@ def getLinewidth(N_em, g, kappa, gamma, gamma2):
         wDec2=wDec-Dw
         if wDec2>=0:
             specDec2=specPos[currentIndex-1]
-            while specDec >=0.5 and specDec2<specDec and wDec2>0:
+            while specDec2 >=0.5 and specDec2<specDec and wDec2>0:
                 currentIndex-=1
                 wDec=wDec2
                 wDec2=wlistPos[currentIndex-1]

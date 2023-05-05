@@ -8,10 +8,9 @@ from getSteadyState import getSteadyState
 #
 def pump_sweep_variable_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2):
     #pump-list
-    dlogP_over_g=0.1
-    logP_over_g=np.arange(pump_logmin,pump_logmax+dlogP_over_g,dlogP_over_g)
-    pump_over_g_List=10**(logP_over_g)
-    pumpList=pump_over_g_List*g
+    dlogP=0.1
+    logP=np.arange(pump_logmin,pump_logmax+dlogP,dlogP)
+    pumpList=10**(logP)
     #perform pump-sweep
     npList=np.zeros((len(pumpList)))
     g2List=np.zeros(len(pumpList))
@@ -82,7 +81,7 @@ def pump_sweep_variable_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2):
         cav_capacity_occ_list[i]=cav_capacity_occ
         N_Hilbert_list[i]=N_Hilbert
     #save
-    np.savez('./data/{}-emitter_pump-sweep_ss_NH_intelligent_g={}_kap={}_gam={}_gam2={}.npz'.format(N_em,g,kappa,gamma,gamma2),g2=g2List,nP=npList,pump_over_g_save=pump_over_g_List,N_H_list=N_Hilbert_list,cav_conv=cav_capacity_occ,neMatrix=neMatrix)
+    np.savez('./data/{}-emitter_pump-sweep_ss_NH_intelligent_g={}_kap={}_gam={}_gam2={}.npz'.format(N_em,g,kappa,gamma,gamma2),g2=g2List,nP=npList,pumpList=pumpList,N_H_list=N_Hilbert_list,cav_conv=cav_capacity_occ,neMatrix=neMatrix)
     #tests
     #print(cav_capacity_occ_list)
     #print(max(cav_capacity_occ_list))

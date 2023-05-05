@@ -18,7 +18,7 @@ rcParams['axes.titlepad'] = 20
 N_em=1
 g=2 #coupling constant [THz]
 kappa=0.02 #decay rate [THz] for coupling from cavity to environment
-gamma=0*0.012
+gamma=0.1
 gamma2=0/np.sqrt(2)
 gammaD=np.sqrt(2)*gamma2
 
@@ -37,20 +37,19 @@ for i in range(3):
         out_ss=np.load('./data/{}-emitter_pump-sweep_ss_NH_intelligent_g={}_kap={}_gam={}_gam2={}.npz'.format(N_em,g,kappa,gamma,gamma2))
         nP_list_ss=out_ss['nP']
         neMatrix=out_ss['neMatrix']
-        pg_list_ss=out_ss['pump_over_g_save']
-        pump_list=g*pg_list_ss
+        pump_list=out_ss['pumpList']
 
         #axs[i,j].set(xlabel=r'$P [THz]$') 
         #axs[i,j].set(ylabel=r'$(\omega-\omega_{eg})$')
         axs[i,j].contourf(np.log10(pump_list), wlist,(spectrum_matrix).transpose(), 20, cmap='RdGy')
         #plt.colorbar(plt.cm.ScalarMappable(norm=None, cmap='RdGy'),ax=axs[i,j])
         if i==2:
-            axs[i,j].axes.set_xticks([-2,-1,0], labels=[r'$10^{-2}$',r'$10^{-1}$',r'$10^0$'])
+            axs[i,j].axes.set_xticks([-4,-3,-2,-1], labels=[r'$10^{-4}$',r'$10^{-3}$',r'$10^{-2}$',r'$10^{-1}$'])
         axs[i,j].text(min(np.log10(pump_list)), max(wlist)*1.1, '$\kappa$={} THz'.format(kappa))
         
 
 #augmentation
-TITLE='{}-emitter. $\gamma_D$={:.2f} THz. $g$={:.2f} THz'.format(N_em,gammaD,g)
+TITLE='{}-emitter. $g$={:.2f} THz. $\gamma_A$={:.2f} THz. $\gamma_D$={:.2f} THz.'.format(N_em,g,gamma,gammaD)
 fig.suptitle(TITLE)
 fig.supxlabel(r'$P$ [THz]')
 fig.supylabel(r'$(\omega-\omega_{eg})\,\mathrm{[ps^{-1}]}$')

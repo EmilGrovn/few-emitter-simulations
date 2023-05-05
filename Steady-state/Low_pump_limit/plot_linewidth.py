@@ -16,10 +16,10 @@ rcParams['axes.titlepad'] = 20
 ###PARAMETERS
 #system
 N_em=1
-g=0.1 #coupling constant [THz]
-kappa=0.02 #decay rate [THz] for coupling from cavity to environment
-gamma=0.012
-gammaD=1
+g=0.4 #coupling constant [THz]
+kappa=0.1 #decay rate [THz] for coupling from cavity to environment
+gamma=0
+gammaD=0
 gamma2=gammaD/np.sqrt(2)
 
 ###IMPORT DATA
@@ -29,8 +29,17 @@ linewidth=out_ss['linewidth']
 out_ss=np.load('./data/{}-emitter_pump-sweep_ss_NH_intelligent_g={}_kap={}_gam={}_gam2={}.npz'.format(N_em,g,kappa,gamma,gamma2))
 nP_list_ss=out_ss['nP']
 neMatrix=out_ss['neMatrix']
-pg_list_ss=out_ss['pump_over_g_save']
-pump_list=g*pg_list_ss
+pump_list=out_ss['pumpList']
+N_Hilbert=N_em+1
+includeZeroPump=True
+try:
+    Nt=2000
+    Tw=500 #[ps]
+    out=np.load('.\Dynamical\data\{}-emitter_spectrum_g={}_kap={}_gamA={}_gamD={}_Tw={}_Nt={}_NH={}.npz'.format(N_em,g,kappa,gamma,gammaD,Tw,Nt,N_Hilbert))
+    linewidth_dyn=out['linewidth']
+except FileNotFoundError:
+    print('FileNotFound', '.\Dynamical\data\{}-emitter_spectrum_g={}_kap={}_gamA={}_gamD={}_Tw={}_Nt={}_NH={}.npz'.format(N_em,g,kappa,gamma,gammaD,Tw,Nt,N_Hilbert))
+    includeZeroPump=False
 
 ###
 fig, ax1 = plt.subplots(1,figsize=(11,7))
@@ -47,14 +56,16 @@ ST_unmodified=ST_linewidth*2
 ax1.loglog(pump_list, linewidth/(2*np.pi),'bo',mfc='none')    #plot linewidth
 ax1.loglog(pump_list, ST_unmodified/(2*np.pi),'g')    #plot ST (regime 2) linewidth
 ax1.loglog(pump_list, ST_linewidth/(2*np.pi),'g:')    #plot ST (regime 2) linewidth
-ax1.loglog(pump_list, kappa*np.ones((len(pg_list_ss)))/(2*np.pi),'b')  #simple approx
+ax1.loglog(pump_list, kappa*np.ones((len(pump_list)))/(2*np.pi),'b')  #simple approx
 ax1.loglog(pump_list, Reg1_linewidth/(2*np.pi),'r')  #regime 1 linewidth
 ax1.loglog(pump_list, Reg3_linewidth/(2*np.pi),'k')  #regime 3 linewidth
+if includeZeroPump==True:
+    ax1.loglog(pump_list, [linewidth_dyn/(2*np.pi)]*len(pump_list),'k')
 
 #augmentation
-ax1.legend(['Simulation','ST unmodified','ST modified','$\kappa$','Regime 1','Regime 3'])
+ax1.legend(['Simulation','ST unmodified','ST modified','$\kappa$','Regime 1','Regime 3','P=0'])
 ax1.grid()
-TITLE='{}-emitter. $\gamma_D$={:.2f} THz'.format(N_em,gammaD)
+TITLE='{}-emitter. $g$={} THz._$\kappa$={} THz._$\gamma_A$={} THz._$\gamma_D$={} THz.npz'.format(N_em,g,kappa,gamma,gammaD)
 ax1.set(title=TITLE)
 ax1.set(xlabel=r'$P\,[\mathrm{THz}]$',ylabel=r'$ \mathrm{FWHM}\,[\mathrm{THz}]$')
 ax1.set(xlim=[min(pump_list),max(pump_list)])
@@ -65,4 +76,7 @@ ax1.set(ylim=[min(linewidth)/(2*np.pi)/2,max(linewidth)/(2*np.pi)*2])
 
 #save plot
 plt.savefig('./plots/linewidthplot_{}-emitter_pump-sweep_g={}_kap={}_gam={}_gam2={}.pdf'.format(N_em,g,kappa,gamma,gamma2))
-plt.show()
+#plt.show()
+print(linewidth)
+dw=wlist[1]-wlist[0]
+print(linewidth/dw)

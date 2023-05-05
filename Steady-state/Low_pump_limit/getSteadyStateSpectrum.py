@@ -39,13 +39,14 @@ def getSteadyStateSpectrum(N_em, g, kappa, pump, gamma, gamma2, N_Hilbert):
         C_list[3*i+3]=C_gamma2
     #list of frequencies
     #create tlist
-    N=400
+    N=20000
     #Ww=2/0.3*g
-    Ww=g*3
+    Ww=3*g
     #Ww=3*g*np.sqrt(N_em)
     dw=Ww/N
     #tlist = np.arange(0,Tw,dt)
     wlist=dw*np.arange(-N/2,N/2,1)
+    #wlist=dw*np.arange(0,N,1)
 
     Spectrum=spectrum(H,wlist,c_ops=C_list,a_op=a.dag(),b_op=a)
     #Spectrum=spectrum(H,wlist,c_ops=[],a_op=a.dag(),b_op=a)

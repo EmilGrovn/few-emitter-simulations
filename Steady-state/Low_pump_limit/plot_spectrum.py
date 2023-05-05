@@ -17,9 +17,9 @@ rcParams['axes.titlepad'] = 20
 #system
 N_em=1
 g=2 #coupling constant [THz]
-kappa=0.02 #decay rate [THz] for coupling from cavity to environment
-gamma=0.012
-gamma2=0.1/np.sqrt(2)
+kappa=1 #decay rate [THz] for coupling from cavity to environment
+gamma=0*0.012
+gamma2=5000/np.sqrt(2)
 gammaD=np.sqrt(2)*gamma2
 #kappaList=[0,0.1,0.5,1.0,1.1,1.5,2.0,4.0,8.0,16.0]
 
@@ -34,8 +34,7 @@ spectrum_matrix=out_ss['spec']
 out_ss=np.load('./data/{}-emitter_pump-sweep_ss_NH_intelligent_g={}_kap={}_gam={}_gam2={}.npz'.format(N_em,g,kappa,gamma,gamma2))
 nP_list_ss=out_ss['nP']
 neMatrix=out_ss['neMatrix']
-pg_list_ss=out_ss['pump_over_g_save']
-pump_list=g*pg_list_ss
+pump_list=out_ss['pumpList']
 
 
 ##ax3
@@ -48,13 +47,13 @@ ax1.set(ylabel=r'$(\omega-\omega_{eg})$')
 #plt.contourf(np.log10(pg_list_ss), wlist/(g*(np.sqrt(3)-np.sqrt(2))),(spectrum_matrix).transpose(), 20, cmap='RdGy')
 ax1.contourf(np.log10(pump_list), wlist,(spectrum_matrix).transpose(), 20, cmap='RdGy')
 #plt.contourf(np.log10(pg_list_ss)[np.log10(pg_list_ss)<0], wlist,(spectrum_matrix[np.log10(pg_list_ss)<0]).transpose(), 20, cmap='RdGy')
-plt.colorbar(plt.cm.ScalarMappable(norm=None, cmap='RdGy'),ax=ax3)
-ax1.axes.xaxis.set_ticklabels([])
+plt.colorbar(plt.cm.ScalarMappable(norm=None, cmap='RdGy'),ax=ax1)
+#ax1.axes.xaxis.set_ticklabels([])
 
 #augmentation
 TITLE='{}-emitter. $\gamma_D$={:.2f} THz'.format(N_em,gammaD)
 ax1.set(title=TITLE)
-ax1.set(xlim=[min(pump_list),max(pump_list)])
+#ax1.set(xlim=[min(pump_list),max(pump_list)])
 #ax2.set_yticks(ticks=np.arange(1,10),labels=np.arange(1,10)) #virker ikke lige nu
 #ax1.set(ylim=[min(linewidth)/5,max([max(linewidth)*1.3])])
 #ax4.set_yticks(ticks=np.arange(1,10),labels=np.arange(1,10))

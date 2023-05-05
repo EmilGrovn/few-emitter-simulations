@@ -8,10 +8,9 @@ from getSteadyStateSpectrum import getSteadyStateSpectrum
 #
 def pump_sweep_spec(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2):
     #pump-list
-    dlogP_over_g=0.1
-    logP_over_g=np.arange(pump_logmin,pump_logmax+dlogP_over_g,dlogP_over_g)
-    pump_over_g_List=10**(logP_over_g)
-    pumpList=pump_over_g_List*g
+    dlogP=0.1
+    logP=np.arange(pump_logmin,pump_logmax+dlogP,dlogP)
+    pumpList=10**(logP)
     #perform pump-sweep
     Spectrum_matrix=[[]]*len(pumpList)
     #get N_Hilbert from prior test
@@ -24,4 +23,4 @@ def pump_sweep_spec(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2):
         wlist, Spectrum = getSteadyStateSpectrum(N_em=N_em, g=g, kappa=kappa, pump=pump, gamma=gamma, gamma2=gamma2, N_Hilbert=N_Hilbert)
         Spectrum_matrix[i]=Spectrum/np.max(Spectrum)
     #save
-    np.savez('./data/{}-emitter_pump-sweep_spectrum_g={}_kap={}_gam={}_gam2={}.npz'.format(N_em,g,kappa,gamma,gamma2),w=wlist,spec=Spectrum_matrix,pump_over_g_save=pump_over_g_List)
+    np.savez('./data/{}-emitter_pump-sweep_spectrum_g={}_kap={}_gam={}_gam2={}.npz'.format(N_em,g,kappa,gamma,gamma2),w=wlist,spec=Spectrum_matrix,pumpList=pumpList)
