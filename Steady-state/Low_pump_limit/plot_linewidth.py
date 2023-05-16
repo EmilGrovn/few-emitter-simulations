@@ -38,7 +38,7 @@ try:
     out=np.load('.\Dynamical\data\{}-emitter_spectrum_g={}_kap={}_gamA={}_gamD={}_Tw={}_Nt={}_NH={}.npz'.format(N_em,g,kappa,gamma,gammaD,Tw,Nt,N_Hilbert))
     linewidth_dyn=out['linewidth']
 except FileNotFoundError:
-    print('FileNotFound', '.\Dynamical\data\{}-emitter_spectrum_g={}_kap={}_gamA={}_gamD={}_Tw={}_Nt={}_NH={}.npz'.format(N_em,g,kappa,gamma,gammaD,Tw,Nt,N_Hilbert))
+    print('FileNotFound', '.\Dynamical\data\{}-emitter_spectrum_g={}_kap={}_gamA={}_gamD={}_Tw={}_Nt={}_NH={}.npz'.format(N_em,g,kappa,int(gamma),gammaD,Tw,Nt,N_Hilbert))
     includeZeroPump=False
 
 ###
@@ -56,18 +56,18 @@ ST_unmodified=ST_linewidth*2
 ax1.loglog(pump_list, linewidth/(2*np.pi),'bo',mfc='none')    #plot linewidth
 ax1.loglog(pump_list, ST_unmodified/(2*np.pi),'g')    #plot ST (regime 2) linewidth
 ax1.loglog(pump_list, ST_linewidth/(2*np.pi),'g:')    #plot ST (regime 2) linewidth
-ax1.loglog(pump_list, kappa*np.ones((len(pump_list)))/(2*np.pi),'b')  #simple approx
 ax1.loglog(pump_list, Reg1_linewidth/(2*np.pi),'r')  #regime 1 linewidth
 ax1.loglog(pump_list, Reg3_linewidth/(2*np.pi),'k')  #regime 3 linewidth
+ax1.loglog(pump_list, kappa*np.ones((len(pump_list)))/(2*np.pi),'b')  #simple approx
 if includeZeroPump==True:
-    ax1.loglog(pump_list, [linewidth_dyn/(2*np.pi)]*len(pump_list),'k')
+    ax1.loglog(pump_list, [linewidth_dyn/(2*np.pi)]*len(pump_list),'m')
 
 #augmentation
-ax1.legend(['Simulation','ST unmodified','ST modified','$\kappa$','Regime 1','Regime 3','P=0'])
+ax1.legend(['Simulation','ST unmodified','ST modified','Rabi peak','Quenching','$\kappa$','P=0'])
 ax1.grid()
-TITLE='{}-emitter. $g$={} THz._$\kappa$={} THz._$\gamma_A$={} THz._$\gamma_D$={} THz.npz'.format(N_em,g,kappa,gamma,gammaD)
+TITLE='{}-emitter. $g$={} ps$^-$$^1$. $\kappa$={} ps$^-$$^1$. $\gamma_A$={} ps$^-$$^1$. $\gamma_D$={} ps$^-$$^1$'.format(N_em,g,kappa,gamma,gammaD)
 ax1.set(title=TITLE)
-ax1.set(xlabel=r'$P\,[\mathrm{THz}]$',ylabel=r'$ \mathrm{FWHM}\,[\mathrm{THz}]$')
+ax1.set(xlabel=r'$P\, \mathrm{[ps^{-1}]}$',ylabel=r'$ \mathrm{FWHM}\,[\mathrm{THz}]$')
 ax1.set(xlim=[min(pump_list),max(pump_list)])
 #ax2.set_yticks(ticks=np.arange(1,10),labels=np.arange(1,10)) #virker ikke lige nu
 ax1.set(ylim=[min(linewidth)/(2*np.pi)/2,max(linewidth)/(2*np.pi)*2])

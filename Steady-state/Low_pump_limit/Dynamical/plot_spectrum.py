@@ -16,17 +16,17 @@ rcParams['axes.titlepad'] = 20
     #"font.size": 16})
     #system
 N_em=1
-g=0.4 #coupling constant [THz]
+g=2 #coupling constant [THz]
 kappa=0.1 #decay rate [THz] for coupling from cavity to environment
 pump=0
-gammaA=0
+gammaA=64
 gammaD=0
 gamma=gammaA
 gamma2=gammaD/np.sqrt(2)
 #numerical
 N_Hilbert=N_em+1
-Nt=2000
-Tw=500 #[ps]
+Nt=400
+Tw=50 #[ps]
 #
 
 out=np.load('.\data\{}-emitter_spectrum_g={}_kap={}_gamA={}_gamD={}_Tw={}_Nt={}_NH={}.npz'.format(N_em,g,kappa,gammaA,gammaD,Tw,Nt,N_Hilbert))
@@ -36,7 +36,7 @@ linewidth=out['linewidth']
 #
 fig = plt.figure(1,figsize=(6,3))
 #plt.semilogy(wlist/g, S)
-plt.plot(wlist, Spectrum,'b*')
+plt.plot(wlist, Spectrum,'b')
 #plt.xlim(0,1)
 plt.xlabel(r'$\left(\omega-\omega_{\rm eg}\right)$') 
 plt.ylabel('Spectrum [a.u.]')

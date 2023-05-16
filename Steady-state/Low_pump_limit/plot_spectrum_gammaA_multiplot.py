@@ -24,6 +24,7 @@ gammaD=np.sqrt(2)*gamma2
 
 gammaAList=[0.1,0.5,1.0,1.1,1.5,2.0,4.0,8.0,16.0]
 gammaAList=[1.1,1.5,2.0,4.0,8.0,16.0,32.0,64.0,128.0]
+gammaAList=[0.1,1.0,2.0,4.0,6,8.0,16.0,32.0,64.0]
 
 
 ###
@@ -46,13 +47,13 @@ for i in range(3):
         #plt.colorbar(plt.cm.ScalarMappable(norm=None, cmap='RdGy'),ax=axs[i,j])
         if i==2:
             axs[i,j].axes.set_xticks([-4,-3,-2,-1], labels=[r'$10^{-4}$',r'$10^{-3}$',r'$10^{-2}$',r'$10^{-1}$'])
-        axs[i,j].text(min(np.log10(pump_list)), max(wlist)*1.1, '$\gamma_A$={} THz'.format(gamma))
+        axs[i,j].text(min(np.log10(pump_list)), max(wlist)*1.1, '$\gamma_A$={} ps$^-$$^1$'.format(gamma))
         
 
 #augmentation
-TITLE='{}-emitter. $\kappa$={:.2f} THz. $\gamma_D$={:.2f} THz. $g$={} THz'.format(N_em,kappa,gammaD,g)
+TITLE='{}-emitter. $\kappa$={:.2f} ps$^-$$^1$. $\gamma_D$={:.2f} ps$^-$$^1$. $g$={} ps$^-$$^1$'.format(N_em,kappa,gammaD,g)
 fig.suptitle(TITLE)
-fig.supxlabel(r'$P$ [THz]')
+fig.supxlabel(r'$P$ [ps$^-$$^1$]')
 fig.supylabel(r'$(\omega-\omega_{eg})\,\mathrm{[ps^{-1}]}$')
 #ax1.set(xlim=[min(pump_list),max(pump_list)])
 

@@ -20,16 +20,16 @@ rcParams['axes.titlepad'] = 20
 #system
 N_em=1
 g=2 #coupling constant [THz]
-kappa=0.5 #decay rate [THz] for coupling from cavity to environment
+kappa=0.1 #decay rate [THz] for coupling from cavity to environment
 pump=0
-gammaA=0
-gammaD=1000
+gammaA=64
+gammaD=0
 gamma=gammaA
 gamma2=gammaD/np.sqrt(2)
 #numerical
 N_Hilbert=N_em+1
 Nt=2000
-Tw=600 #[ps]
+Tw=1 #[ps]
 
 print(g,kappa,gammaA,gammaD)
 #numerical
@@ -59,6 +59,7 @@ plt.ylabel('Occupation probability')
 #plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=1)
 plt.legend()
 plt.xlim(0,Tw)
+plt.xlim(0,0.25)
 plt.ylim(0,1)
 Title=r''
 if g<abs(kappa-gamma)/4:

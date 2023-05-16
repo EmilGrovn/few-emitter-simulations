@@ -24,6 +24,7 @@ gammaD=np.sqrt(2)*gamma2
 
 gammaAList=[0.1,0.5,1.0,1.1,1.5,2.0,4.0,8.0,16.0]
 gammaAList=[1.1,1.5,2.0,4.0,8.0,16.0,32.0,64.0,128.0]
+gammaAList=[0.1,1.0,2.0,4.0,6,8.0,16.0,32.0,64.0]
 
 
 ###
@@ -53,7 +54,8 @@ for i in range(3):
         axs[i,j].loglog(pump_list, ST_unmodified/(2*np.pi),'g')    #plot ST (regime 2) linewidth
         axs[i,j].loglog(pump_list, ST_linewidth/(2*np.pi),'g:')    #plot ST (regime 2) linewidth
         axs[i,j].loglog(pump_list, kappa*np.ones((len(pump_list)))/(2*np.pi),'b')  #simple approx
-        axs[i,j].loglog(pump_list, Reg1_linewidth/(2*np.pi),'r')  #regime 1 linewidth
+        if min(Reg1_linewidth/(2*np.pi))/100<max(linewidth/(2*np.pi)):
+            axs[i,j].loglog(pump_list, Reg1_linewidth/(2*np.pi),'r')  #regime 1 linewidth
         axs[i,j].loglog(pump_list, Reg3_linewidth/(2*np.pi),'k')  #regime 3 linewidth
 
         #axs[i,j].set(xlabel=r'$P [THz]$') 
@@ -67,14 +69,14 @@ for i in range(3):
         Min=min(linewidth)/(2*np.pi)
         Max=max(linewidth)*1.1/(2*np.pi)
         #axs[i,j].axes.set_ylim(Min,Max)
-        axs[i,j].text(0.0001, axs[i,j].axes.get_ylim()[1]*1.1, '$\gamma_A$={} THz'.format(gamma))
+        axs[i,j].text(0.0001, axs[i,j].axes.get_ylim()[1]*1.1, '$\gamma_A$={} ps$^-$$^1$'.format(gamma))
         
 
 #augmentation
-TITLE='{}-emitter. $\kappa$={:.2f} THz. $\gamma_D$={:.2f} THz. $g$={} THz'.format(N_em,kappa,gammaD,g)
+TITLE='{}-emitter. $\kappa$={:.2f} ps$^-$$^1$. $\gamma_D$={:.2f} ps$^-$$^1$. $g$={} ps$^-$$^1$'.format(N_em,kappa,gammaD,g)
 print(TITLE)
 fig.suptitle(TITLE)
-fig.supxlabel(r'$P$ [THz]')
+fig.supxlabel(r'$P$ [ps$^-$$^1$]')
 fig.supylabel(r'FWHM [THz]')
 #ax1.set(xlim=[min(pump_list),max(pump_list)])
 

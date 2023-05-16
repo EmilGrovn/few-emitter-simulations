@@ -16,10 +16,10 @@ rcParams['axes.titlepad'] = 20
 ###PARAMETERS
 #system
 N_em=1
-g=2 #coupling constant [THz]
+g=0.4 #coupling constant [THz]
 kappa=0.1 #decay rate [THz] for coupling from cavity to environment
-gamma=256.0
-gamma2=0/np.sqrt(2)
+gamma=0
+gamma2=0.1/np.sqrt(2)
 gammaD=np.sqrt(2)*gamma2
 
 
@@ -44,7 +44,7 @@ try:
 except ValueError:
     Pth1=max(pump_list)
 try:
-    Pth2=min(pump_list[g2_list_ss<1+delta])
+    Pth2=max(pump_list[g2_list_ss<1+delta])
 except ValueError:
     Pth2=max(pump_list)
 try:
@@ -59,7 +59,11 @@ fig, (ax1,ax2,ax3,ax4) = plt.subplots(4,figsize=(11,7))
 #ax1.loglog([Pth2]*2, [min(nP_list_ss),max(nP_list_ss)],'k:')
 ax2.loglog([Pth1]*2, [0.5,3],'k:')
 ax2.loglog([Pth2]*2, [0.5,3],'k:')
-ax2.loglog([Pth_Qn]*2, [0.5,3],'k:')  #plot regime boundaries only on middle plot
+#ax2.loglog([Pth_Qn]*2, [0.5,3],'k:')  #plot regime boundaries only on middle plot
+#regimer
+ax2.text(Pth1-Pth2*0.025, 1.4, 'I')
+ax2.text(Pth1+Pth2*0.1, 1.4, 'II')
+ax2.text(Pth_Qn, 1.6, 'III')
 #ax3.loglog([Pth1]*2, [min(wlist/g),max(wlist/g)],'k:')
 #ax3.loglog([Pth2]*2, [min(wlist/g),max(wlist/g)],'k:')
 ax1.grid()
@@ -121,7 +125,7 @@ ax4.loglog(pump_list, Reg3_linewidth/(2*np.pi),'k')  #regime 3 linewidth
 ##plot thresholds
 ax4.loglog([Pth1]*2, [ax4.axes.get_ylim()[0],ax4.axes.get_ylim()[1]],'k:')
 ax4.loglog([Pth2]*2, [ax4.axes.get_ylim()[0],ax4.axes.get_ylim()[1]],'k:')
-ax4.loglog([Pth_Qn]*2, [ax4.axes.get_ylim()[0],ax4.axes.get_ylim()[1]],'k:')
+#ax4.loglog([Pth_Qn]*2, [ax4.axes.get_ylim()[0],ax4.axes.get_ylim()[1]],'k:')
 #ax4.loglog([Pth_cl]*2/g, [min([min(linewidth/g),0.001]),max([max(linewidth/g),10])],'g:')
 #ax4.loglog([Pth_qn]*2/g, [min([min(linewidth/g),0.001]),max([max(linewidth/g),10])],'b:')
 

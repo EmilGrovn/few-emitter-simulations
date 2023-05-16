@@ -16,10 +16,10 @@ rcParams['axes.titlepad'] = 20
 ###PARAMETERS
 #system
 N_em=1
-g=2 #coupling constant [THz]
-kappa=1 #decay rate [THz] for coupling from cavity to environment
-gamma=0*0.012
-gamma2=5000/np.sqrt(2)
+g=0.4 #coupling constant [THz]
+kappa=0.1 #decay rate [THz] for coupling from cavity to environment
+gamma=0
+gamma2=0/np.sqrt(2)
 gammaD=np.sqrt(2)*gamma2
 #kappaList=[0,0.1,0.5,1.0,1.1,1.5,2.0,4.0,8.0,16.0]
 
@@ -38,8 +38,8 @@ pump_list=out_ss['pumpList']
 
 
 ##ax3
-ax1.set(xlabel=r'$P [THz]$') 
-ax1.set(ylabel=r'$(\omega-\omega_{eg})$')
+ax1.set(xlabel=r'$\mathrm{log}(P)\, \mathrm{[ps^{-1}]}$') 
+ax1.set(ylabel=r'$(\omega-\omega_{eg})\, \mathrm{[ps^{-1}]}$')
 #ax3.set(ylim=[-1.5*g,1.5*g])
 #ax3.set_xticks(ticks=np.arange(-3,4,1),labels=10^(np.arange(-3,4,1)))
 #g=np.sqrt(N_em)*g
@@ -51,7 +51,7 @@ plt.colorbar(plt.cm.ScalarMappable(norm=None, cmap='RdGy'),ax=ax1)
 #ax1.axes.xaxis.set_ticklabels([])
 
 #augmentation
-TITLE='{}-emitter. $\gamma_D$={:.2f} THz'.format(N_em,gammaD)
+TITLE='{}-emitter. $g$={} ps$^-$$^1$. $\kappa$={} ps$^-$$^1$. $\gamma_A$={} ps$^-$$^1$. $\gamma_D$={} ps$^-$$^1$'.format(N_em,g,kappa,gamma,gammaD)
 ax1.set(title=TITLE)
 #ax1.set(xlim=[min(pump_list),max(pump_list)])
 #ax2.set_yticks(ticks=np.arange(1,10),labels=np.arange(1,10)) #virker ikke lige nu

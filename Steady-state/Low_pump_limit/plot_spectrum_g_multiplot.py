@@ -17,16 +17,17 @@ rcParams['axes.titlepad'] = 20
 #system
 N_em=1
 g=2 #coupling constant [THz]
-kappa=0.1 #decay rate [THz] for coupling from cavity to environment
+kappa=1 #decay rate [THz] for coupling from cavity to environment
 gamma=0
-gamma2=0.1/np.sqrt(2)
+gamma2=0.5/np.sqrt(2)
 gammaD=np.sqrt(2)*gamma2
 
 gList=[1,1.2,1.5,1.8,2.0,2.5,3.0,4.0,5.0]
+gList=[0.2,0.5,1.0,1.5,2.0,3.0,5.0,10.0,50.0]
 
 
 ###
-fig, axs = plt.subplots(3, 3, sharex=True, sharey=True, figsize=(11,7))
+fig, axs = plt.subplots(3, 3, sharex=True, sharey=False, figsize=(11,7))
 for i in range(3):
     for j in range(3):
         g=gList[i*3+j]
@@ -45,13 +46,13 @@ for i in range(3):
         #plt.colorbar(plt.cm.ScalarMappable(norm=None, cmap='RdGy'),ax=axs[i,j])
         if i==2:
             axs[i,j].axes.set_xticks([-4,-3,-2,-1], labels=[r'$10^{-4}$',r'$10^{-3}$',r'$10^{-2}$',r'$10^{-1}$'])
-        axs[i,j].text(min(np.log10(pump_list)), max(wlist)*1.1, '$g$={} THz'.format(g))
+        axs[i,j].text(min(np.log10(pump_list)), max(wlist)*1.1, '$g$={} ps$^-$$^1$'.format(g))
         
 
 #augmentation
-TITLE='{}-emitter. $\gamma_A$={:.2f} THz. $\gamma_D$={:.2f} THz'.format(N_em,kappa,gamma,gammaD)
+TITLE='{}-emitter. $\kappa$={:.2f} ps$^-$$^1$. $\gamma_A$={:.2f} ps$^-$$^1$. $\gamma_D$={:.2f} ps$^-$$^1$'.format(N_em,kappa,gamma,gammaD)
 fig.suptitle(TITLE)
-fig.supxlabel(r'$P$ [THz]')
+fig.supxlabel(r'$P$ [ps$^-$$^1$]')
 fig.supylabel(r'$(\omega-\omega_{eg})\,\mathrm{[ps^{-1}]}$')
 #ax1.set(xlim=[min(pump_list),max(pump_list)])
 
