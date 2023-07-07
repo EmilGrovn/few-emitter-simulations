@@ -17,9 +17,14 @@ rcParams['axes.titlepad'] = 20
 #system
 N_em=1
 g=2 #coupling constant [THz]
-gamma2=0/np.sqrt(2) #decay rate [THz] for coupling from cavity to environment
-gammaD=np.sqrt(2)*gamma2
-gamma=0
+gammaD=3
+gamma2=gammaD/2
+gamma=6
+gammaA=gamma
+gammaD=3
+gamma2=gammaD/2 #decay rate [THz] for coupling from cavity to environment
+gamma=6
+gammaA=gamma
 pump=0.0001
 
 
@@ -34,8 +39,9 @@ out_ss=np.load('./data/{}-emitter_kappa-sweep_ss_NH_intelligent_g={}_gam2={}_gam
 nP_list_ss=out_ss['nP']
 neMatrix=out_ss['neMatrix']
 kappa_list=out_ss['kappa_List']
-
-
+print(spectrum_matrix)
+print(np.real(spectrum_matrix))
+print(np.imag(spectrum_matrix))
 ##ax3
 ax1.set(xlabel=r'$\mathrm{log}(\kappa)\, [\mathrm{ps^{-1}}]$') 
 ax1.set(ylabel=r'$(\omega-\omega_{eg})\,\mathrm{[ps^{-1}]}$')

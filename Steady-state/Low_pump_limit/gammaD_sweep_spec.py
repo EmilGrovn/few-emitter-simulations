@@ -18,7 +18,7 @@ def gammaD_sweep_spec(N_em,g,kappa,gammaD_logmin,gammaD_logmax,gamma,pump):
     N_Hilb_list=out_ss['N_H_list']
     
     for i,gammaD in enumerate(gammaD_List):
-        gamma2=np.sqrt(2)*gammaD        
+        gamma2=gammaD/2        
         print(i+1,' out of ',len(gammaD_List))#output to show how far the simulation is
         N_Hilbert=N_Hilb_list[i]
         wlist, Spectrum = getSteadyStateSpectrum(N_em=N_em, g=g, kappa=kappa, pump=pump, gamma=gamma, gamma2=gamma2, N_Hilbert=N_Hilbert)

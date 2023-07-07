@@ -18,15 +18,15 @@ rcParams['axes.titlepad'] = 20
 N_em=1
 pump=0
 g=2 #coupling constant [THz]
-kappa=0.1 #decay rate [THz] for coupling from cavity to environment
-gammaA=64
+kappa=100 #decay rate [THz] for coupling from cavity to environment
+gammaA=0
 gammaD=0
 gamma=gammaA
 gamma2=gammaD/np.sqrt(2)
 #numerical
 N_Hilbert=N_em+1
-Nt=2000
-Tw=10 #[ps]
+Nt=300
+Tw=80 #[ps]
 #
 wlist, Spectrum = compute2op2t_spectrum_trapz(N_em,g,kappa, pump, gamma,gamma2,Nt,Tw,N_Hilbert)
 S= Spectrum.real

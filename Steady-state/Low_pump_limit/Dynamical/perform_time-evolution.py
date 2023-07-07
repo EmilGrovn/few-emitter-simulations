@@ -20,16 +20,16 @@ rcParams['axes.titlepad'] = 20
 #system
 N_em=1
 g=2 #coupling constant [THz]
-kappa=0.1 #decay rate [THz] for coupling from cavity to environment
+kappa=100 #decay rate [THz] for coupling from cavity to environment
 pump=0
-gammaA=64
+gammaA=0
 gammaD=0
 gamma=gammaA
 gamma2=gammaD/np.sqrt(2)
 #numerical
 N_Hilbert=N_em+1
 Nt=2000
-Tw=1 #[ps]
+Tw=60 #[ps]
 
 print(g,kappa,gammaA,gammaD)
 #numerical
@@ -45,7 +45,7 @@ out=np.load('.\data\{}-emitter_time_evolution_pump={}_Tw={}_Nt={}_NH={}.npz'.for
 c_occ_list=out['c_occ']
 e_occ_list=out['e_occM']
 tlist=out['tlist']
-
+print('Last emitter occupation',e_occ_list[:,-1])
 #
 fig = plt.figure(1,figsize=(4,4))
 styles=['b','b--','b:']
@@ -59,7 +59,7 @@ plt.ylabel('Occupation probability')
 #plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=1)
 plt.legend()
 plt.xlim(0,Tw)
-plt.xlim(0,0.25)
+#plt.xlim(0,0.25)
 plt.ylim(0,1)
 Title=r''
 if g<abs(kappa-gamma)/4:

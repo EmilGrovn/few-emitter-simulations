@@ -41,14 +41,15 @@ def getSteadyStateSpectrum(N_em, g, kappa, pump, gamma, gamma2, N_Hilbert):
     #create tlist
     N=40000
     #Ww=2/0.3*g
-    Ww=3*g
+    #Ww=3*g
     Ww=6*g
+    #Ww=8*g
     #Ww=3*g*np.sqrt(N_em)
     dw=Ww/N
     #tlist = np.arange(0,Tw,dt)
     wlist=dw*np.arange(-N/2,N/2,1)
     #wlist=dw*np.arange(0,N,1)
-
+    print(max(wlist))
     Spectrum=spectrum(H,wlist,c_ops=C_list,a_op=a.dag(),b_op=a,solver='es')
     #Spectrum=spectrum(H,wlist,c_ops=[],a_op=a.dag(),b_op=a)
     return wlist, Spectrum

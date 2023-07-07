@@ -25,7 +25,7 @@ def gammaD_sweep_variable_NH(N_em,g,kappa,gammaD_logmin,gammaD_logmax,gamma,pump
     e_state=basis(2,1)
 
     for i,gammaD in enumerate(gammaD_List):
-        gamma2=np.sqrt(2)*gammaD
+        gamma2=gammaD/2
         print(i+1,' out of ',Npoints)#output to show how far the simulation is
         #obtain steady state density operator and operators
         rho_ss, c_occ, c_occ_p2, emitter_occ_list = getSteadyState(N_em=N_em, g=g, kappa=kappa, pump=pump, gamma=gamma, gamma2=gamma2, N_Hilbert=N_Hilbert)

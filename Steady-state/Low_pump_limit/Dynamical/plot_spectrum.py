@@ -17,16 +17,16 @@ rcParams['axes.titlepad'] = 20
     #system
 N_em=1
 g=2 #coupling constant [THz]
-kappa=0.1 #decay rate [THz] for coupling from cavity to environment
+kappa=100 #decay rate [THz] for coupling from cavity to environment
 pump=0
-gammaA=64
+gammaA=0
 gammaD=0
 gamma=gammaA
 gamma2=gammaD/np.sqrt(2)
 #numerical
 N_Hilbert=N_em+1
 Nt=400
-Tw=50 #[ps]
+Tw=80 #[ps]
 #
 
 out=np.load('.\data\{}-emitter_spectrum_g={}_kap={}_gamA={}_gamD={}_Tw={}_Nt={}_NH={}.npz'.format(N_em,g,kappa,gammaA,gammaD,Tw,Nt,N_Hilbert))

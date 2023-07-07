@@ -14,14 +14,14 @@ from getLinewidth_gammaD import getLinewidth_gammaD
 #system
 N_em=1  #number of emitters
 g=2 #coupling constant [THz]
-kappa=4 #decay rate [THz] for coupling from cavity to environment
-gamma=0 #background decay [THz]
+kappa=8.5 #decay rate [THz] for coupling from cavity to environment
+gamma=0.1 #background decay [THz]
 #g=2 #coupling constant [THz]
 #kappa=0.1 #decay rate [THz] for coupling from cavity to environment
 #gamma=0.01 #background decay [THz]
 #gamma2=0 #pure dephasing [THz]
-gammaD_logmin=-4  #minimum pump/g=10^(pump_logmin)
-gammaD_logmax=4   #maximum pump/g=10^(pump_logmax)
+gammaD_logmin=-2  #minimum pump/g=10^(pump_logmin)
+gammaD_logmax=3   #maximum pump/g=10^(pump_logmax)
 pump=0.0001
 #numerical
 #N_Hilbert=10

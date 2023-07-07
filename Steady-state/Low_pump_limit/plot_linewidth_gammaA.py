@@ -20,7 +20,7 @@ g=2 #coupling constant [THz]
 gamma2=0/np.sqrt(2) #decay rate [THz] for coupling from cavity to environment
 gammaD=np.sqrt(2)*gamma2
 kappa=0.1
-pump=0.001
+pump=0.00001
 
 ###IMPORT DATA
 out_ss=np.load('./data/{}-emitter_gammaA-sweep_linewidth_g={}_gam2={}_kap={}_pump={}.npz'.format(N_em,g,gamma2,kappa,pump))
@@ -41,7 +41,7 @@ Reg1_linewidth=(3*pump+gammaA_list+gammaD+kappa)/2
 Reg3_linewidth=gammaA_list/(nP_list_ss+1)
 neList=neMatrix[:,0]
 ST_linewidth=gammaR/2*np.divide(neList,nP_list_ss)*N_em
-
+FWHM_linewidth=(gammaD+gammaA_list)/2*(1-np.sqrt(1-16*g**2/(kappa-(gammaD+gammaA_list))**2))+kappa/2**(1-np.sqrt(1-16*g**2/(kappa-(gammaA_list+gammaD))**2))
 
 ##plot linewidths
 ST_unmodified=ST_linewidth*2
@@ -52,6 +52,7 @@ ax1.loglog(gammaA_list, Reg1_linewidth/(2*np.pi),'r')  #regime 1 linewidth
 ax1.loglog(gammaA_list, Reg3_linewidth/(2*np.pi),'k')  #regime 3 linewidth
 kappa_list=kappa*np.ones(len(gammaA_list))
 ax1.loglog(gammaA_list, kappa*np.ones(len(gammaA_list))/(2*np.pi),'b--')  #simple approx
+ax1.loglog(gammaA_list, FWHM_linewidth/(2*np.pi),'m--')
 #ax1.loglog(gammaA_list, linewidth[0]/(2*np.pi)+(linewidth[27]-linewidth[0])/(kappa_list[27]-kappa_list[0])*(kappa_list-kappa_list[0])/(2*np.pi),'y--')
 kap1=kappa_list**(-1)
 #ax1.loglog(kappa_list, linewidth[-20]/(2*np.pi)+(linewidth[-20]-linewidth[-1])/(kap1[-20]-kap1[-1])*(kap1-kap1[-20])/(2*np.pi),'y--')
@@ -59,7 +60,8 @@ kap1=kappa_list**(-1)
 #ax1.loglog(kappa_list, linewidth[min(kappa_list-1000)==(kappa_list-1000)]/(2*np.pi)-(kappa_list-kappa_list[min(kappa_list-1000)==(kappa_list-1000)])/(2*np.pi),'m--')
 
 #augmentation
-ax1.legend(['Simulation','ST unmodified','ST modified','Rabi peak','Quenching','$\kappa$','$\propto \kappa$','$\propto 1/\kappa$'])
+ax1.legend(['Simulation','ST unmodified','ST modified','Rabi peak','Quenching','Analytical P=0'])
+#ax1.legend(['Simulation','ST unmodified','ST modified','Rabi peak','Quenching','$\kappa$','$\propto \kappa$','$\propto 1/\kappa$'])
 ax1.grid()
 TITLE='{}-emitter. $g$={} ps$^-$$^1$. $\gamma_D$={} ps$^-$$^1$. $\kappa$={} ps$^-$$^1$. $P$={} ps$^-$$^1$'.format(N_em,g,gammaD,kappa,pump)
 ax1.set(title=TITLE)
