@@ -2,7 +2,7 @@
 Contains scripts for steady state simulations.
 
 ## Generating data
-perform_pump_sweep: 
+\bold{perform_pump_sweep}: 
 in this script, you choose your system: 
 physical input parameters (N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2) (where logmin/max gives min/max value of pump/g, which we want to sweep over)
 numerical parameters: cannot choose these here, only N_Hilbert. Consider changing this. Ties into our considerations
