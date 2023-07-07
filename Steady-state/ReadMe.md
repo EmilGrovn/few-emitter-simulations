@@ -60,7 +60,8 @@ input: physical parameters
 imports spectrum data and calculates and saves linewidth
 
 # analysing data
-## plot_linewidths: from generated data; makes a single plot of the linewidth with a lot of comparison
+## plot_linewidths: 
+from generated data; makes a single plot of the linewidth with a lot of comparison
 
 ## superplot_regimes
 
