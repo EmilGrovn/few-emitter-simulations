@@ -29,6 +29,8 @@ pump_sweep_variable_NH
 
 pump_sweep_spec
 
+get_linewidth
+
 Let us take a look at each function
 
 ## pump_sweep_fixed_NH. Function.
