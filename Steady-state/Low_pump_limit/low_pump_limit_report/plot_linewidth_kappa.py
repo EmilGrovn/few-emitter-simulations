@@ -15,11 +15,11 @@ rcParams['axes.titlepad'] = 20
 
 ###PARAMETERS
 #system
-N_em=1
+N_em=2
 g=2 #coupling constant [THz]
-gammaD=0
+gammaD=2
 gamma2=gammaD/2
-gamma=0
+gamma=1
 gammaA=gamma
 pump=0.0001
 

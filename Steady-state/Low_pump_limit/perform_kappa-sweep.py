@@ -12,7 +12,7 @@ from getLinewidth_kappa import getLinewidth_kappa
 
 ###parameters
 #system
-N_em=1  #number of emitters
+N_em=2  #number of emitters
 g=2 #coupling constant [THz]
 gammaD=8
 gamma2=gammaD/2 #decay rate [THz] for coupling from cavity to environment

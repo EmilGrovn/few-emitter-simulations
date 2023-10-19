@@ -15,15 +15,15 @@ rcParams['axes.titlepad'] = 20
 
 ###PARAMETERS
 #system
-N_em=1
+N_em=2
 g=2 #coupling constant [THz]
 gammaD=3
 gamma2=gammaD/2
 gamma=6
 gammaA=gamma
-gammaD=8
+gammaD=2
 gamma2=gammaD/2 #decay rate [THz] for coupling from cavity to environment
-gamma=5
+gamma=1
 gammaA=gamma
 pump=0.0001
 

@@ -15,12 +15,13 @@ rcParams['axes.titlepad'] = 20
 
 ###PARAMETERS
 #system
-N_em=1
+N_em=2
 g=2 #coupling constant [THz]
 #gamma2=0/np.sqrt(2) #decay rate [THz] for coupling from cavity to environment
-gammaD=0
-gamma2=gammaD/2
-gamma=0
+g=2 #coupling constant [THz]
+gammaD=2
+gamma2=gammaD/2 #decay rate [THz] for coupling from cavity to environment
+gamma=1 #background decay [THz]
 gammaA=gamma
 # gammaD=0
 # gamma2=gammaD/2 #decay rate [THz] for coupling from cavity to environment
@@ -110,7 +111,10 @@ for i in range(len(kappa_list)):
 ###ax1.loglog(kappa_list[kappa_list>=4*g],kappa_list[kappa_list>=4*g]/2*(1-np.sqrt(1-(4*g/kappa_list[kappa_list>=4*g])**2))/(2*np.pi),'y--')
 ax1.loglog(kappa_list,FWHM_linewidth/(2*np.pi),'m.')
 ax1.loglog(kappa_list,FWHM_linewidth_approx/(2*np.pi),'y*')
-ax1.loglog(kappa_list,linewidth_list/(2*np.pi),'k.')
+try:
+    ax1.loglog(kappa_list,linewidth_list/(2*np.pi),'k.')
+except NameError:
+    print('Hola')
 ###ax1.loglog(kappa_list,FWHM_extended/(2*np.pi),'b.')
 #ax1.loglog(kappa_list, linewidth[min(kappa_list-1000)==(kappa_list-1000)]/(2*np.pi)-(kappa_list-kappa_list[min(kappa_list-1000)==(kappa_list-1000)])/(2*np.pi),'m--')
 
