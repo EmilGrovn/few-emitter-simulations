@@ -9,7 +9,7 @@ In this folder, plots generated from the current folder is saved.
 ## deprecated
 In this folder, files, which are no longer of use are put.
 ## current folder
-Contains scripts for steady state simulations, which are used to generate data for various pump values. The scripts for generating data are excactly analogous to the data generating scripts in the low pump folder. INSTEAD OF HAVING ONE SCRIPT FOR EACH PARAMETER IN OUR PARAMETER SPACE, CONSIDER CHANGING THE FUNCTIONALITY OF THE DATA GENERATING SCRIPTS, SO YOU CAN CHOOSE, WHICH OF THE 5 PARAMETERS (kappa, gammaA, gammaD, Pump. g) TO SWEEP OVER.
+Contains scripts for steady state simulations, which are used to generate data for various pump values. The scripts for generating data are excactly analogous to the data generating scripts in the low pump folder. INSTEAD OF HAVING ONE SCRIPT FOR EACH PARAMETER IN OUR PARAMETER SPACE, CONSIDER CHANGING THE FUNCTIONALITY OF THE DATA GENERATING SCRIPTS, SO YOU CAN CHOOSE, WHICH OF THE 5 PARAMETERS (kappa, gammaA, gammaD, Pump. g) TO SWEEP OVER. THIS WOULD BE GOOD PROGRAMMING PRACTICE I GUESS, WHEREAS RIGHT NOW WE HAVE COPIED A LOT OF IDENTICAL CODE.
 
 We go through the structure of the scripts below.
 
