@@ -1,5 +1,15 @@
 # Steady-State
-Contains scripts for steady state simulations.
+Contains 4 folders:
+## Low_pump_limit
+In this folder, we consider the limit of low pumping.
+## data
+In this folder, data generated from the current folder is saved.
+## plots
+In this folder, plots generated from the current folder is saved.
+## deprecated
+In this folder, files, which are no longer of use are put.
+## current folder
+Contains scripts for steady state simulations. We go through them in the following
 
 # Generating data
 ## perform_pump_sweep: 
