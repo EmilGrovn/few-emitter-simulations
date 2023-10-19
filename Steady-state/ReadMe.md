@@ -39,7 +39,7 @@ input: physical parameters (pump is given as boundaries) and N_Hilbert
 out: no outout, but saves an numpyzip-file in the datafolder with nP (mean photon population) and g^(2)(0), and an np-array of corresponding values of pump/g
 
 Further comments: this function is limited in the sense that for most pump-sweeps (when we reach lasing) a much bigger Hilbert space is needed than for the small pump
-Preferably, we should alter it so takes in a list of N_Hilbert
+Preferably, we should alter it so it takes in a list of N_Hilbert
 
 ## pump_sweep_variable_NH. Function.
 input: physical parameters (pump is given as boundaries)
