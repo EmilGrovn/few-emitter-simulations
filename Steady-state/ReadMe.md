@@ -16,20 +16,28 @@ Contains scripts for steady state simulations, which are used to generate data f
 in this script, you choose your system: 
 
 physical input parameters (N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2) (where logmin/max gives min/max value of pump/g, which we want to sweep over)
+
 numerical parameters: cannot choose these here, only N_Hilbert. Consider changing this. Ties into our considerations
 
 Then run one or more of the following functions:
+
 pump_sweep_fixed_NH
+
 pump_sweep_variable_NH
+
 pump_sweep_spec
 
 Let us take a look at each function
 
 ## pump_sweep_fixed_NH. Function.
 input: physical parameters (pump is given as boundaries) and N_Hilbert
+
 1. constructs pumplist from pump_logmin/max and an internal step parameter, dLogP_over_g
+
 2. for each pump: call getSteady state. Calculate nP and g2
+
 out: no outout, but saves an numpyzip-file in the datafolder with nP (mean photon population) and g^(2)(0), and an np-array of corresponding values of pump/g
+
 Further comments: this function is limited in the sense that for most pump-sweeps (when we reach lasing) a much bigger Hilbert space is needed than for the small pump
 Preferably, we should alter it so takes in a list of N_Hilbert
 
