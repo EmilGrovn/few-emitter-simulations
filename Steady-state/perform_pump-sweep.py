@@ -12,11 +12,11 @@ from getLinewidth import getLinewidth
 
 ###parameters
 #system
-N_em=1  #number of emitters
-g=0.1 #coupling constant [THz]
+N_em=2  #number of emitters
+g=0.1*N_em #coupling constant [THz]
 kappa=0.02 #decay rate [THz] for coupling from cavity to environment
-gamma=0.012 #background decay [THz]
-gamma2=0.1/np.sqrt(2) #pure dephasing [THz]
+gamma=0.012*N_em #background decay [THz]
+gamma2=0.1/np.sqrt(2)*N_em #pure dephasing [THz]
 #g=0.3 #coupling constant [THz]
 #kappa=0.1 #decay rate [THz] for coupling from cavity to environment
 #gamma=0.01 #background decay [THz]
@@ -28,6 +28,6 @@ N_Hilbert=10
 
 ###perform pump-sweep
 #pump_sweep_fixed_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2,N_Hilbert)#get nP and g(0)^(2)
-#pump_sweep_variable_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2)
-#pump_sweep_spec(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2)#get spectrum
+pump_sweep_variable_NH(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2)
+pump_sweep_spec(N_em,g,kappa,pump_logmin,pump_logmax,gamma,gamma2)#get spectrum
 getLinewidth(N_em, g, kappa, gamma, gamma2)
