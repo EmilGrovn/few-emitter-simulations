@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 #consider an unpumped 1-emitter with parameters
-N_em=2
+N_em=4
 g=2*np.sqrt(N_em) #coupling constant [ps^(-1)]
 gammaA=0.1
 kappa=8.5

@@ -2,10 +2,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 #consider an unpumped 1-emitter with parameters
-N_em=2
+N_em=3
 g=2*np.sqrt(N_em) #coupling constant [ps^(-1)]
-gammaA=0
-gammaD=0
+gammaA=1
+gammaD=2
 #kappa=0.1
 kappa_list=10**np.arange(-2,3+0.1,0.1)
 #kappa_list=10**np.arange(-2,10+0.1,0.1)

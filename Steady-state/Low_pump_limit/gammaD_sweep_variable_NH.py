@@ -17,8 +17,9 @@ def gammaD_sweep_variable_NH(N_em,g,kappa,gammaD_logmin,gammaD_logmax,gamma,pump
     g2List=np.zeros(Npoints)
     neMatrix=np.zeros((Npoints,N_em))
     #initialize intelligent loop
-    N_Hilbert=10
-    inc=2
+    N0=2
+    N_Hilbert=N0
+    inc=1
     N_Hilbert_list=[[]]*Npoints
     cav_capacity_occ_list=[[]]*Npoints
     g_state=basis(2,0)
@@ -52,8 +53,8 @@ def gammaD_sweep_variable_NH(N_em,g,kappa,gammaD_logmin,gammaD_logmax,gamma,pump
                 print('N_Hilbert={}'.format(N_Hilbert))
                 N_Hilbert_list[i]=N_Hilbert
             cav_occ_Optimized=True
-        elif 10<N_Hilbert-inc and cav_occ_Optimized==False:
-            while 10<N_Hilbert and cav_capacity_occ<maxtol_cav_occ:
+        elif N0<N_Hilbert-inc and cav_occ_Optimized==False:
+            while N0<N_Hilbert and cav_capacity_occ<maxtol_cav_occ:
                 N_Hilbert+=-inc
                 rho_ss, c_occ, c_occ_p2, emitter_occ_list = getSteadyState(N_em=N_em, g=g, kappa=kappa, pump=pump, gamma=gamma, gamma2=gamma2, N_Hilbert=N_Hilbert)
                 a_max_state_cav=basis(N_Hilbert,N_Hilbert-1)

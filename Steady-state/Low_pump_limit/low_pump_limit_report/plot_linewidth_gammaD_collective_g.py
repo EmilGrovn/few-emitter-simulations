@@ -15,7 +15,7 @@ rcParams['axes.titlepad'] = 20
 
 ###PARAMETERS
 #system
-N_em=2
+N_em=4
 g=2 #coupling constant [THz]
 gCol=g*np.sqrt(N_em)
 kappa=8.5 #decay rate [THz] for coupling from cavity to environment
