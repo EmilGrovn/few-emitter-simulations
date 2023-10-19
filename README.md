@@ -10,4 +10,4 @@ The limitations of the Born-Markov approach are summarized briefly in e.g. the N
 # Content of folder
 In this folder, you find two sub-folders. 
 'Dynamical' is concerned the transient time evolution of our system. 
-'Steady-State' is concerned with characterizing the steady state of the system in the presence of pumping.
+'Steady-State' is concerned with characterizing the steady state of the system in the presence of pumping. It is in this folder that we generate and analyze data of the linewidth.
