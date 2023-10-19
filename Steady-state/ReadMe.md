@@ -9,7 +9,9 @@ In this folder, plots generated from the current folder is saved.
 ## deprecated
 In this folder, files, which are no longer of use are put.
 ## current folder
-Contains scripts for steady state simulations, which are used to generate data for various pump values. We go through them in the following
+Contains scripts for steady state simulations, which are used to generate data for various pump values. The scripts for generating data are excactly analogous to the data generating scripts in the low pump folder. INSTEAD OF HAVING ONE SCRIPT FOR EACH PARAMETER IN OUR PARAMETER SPACE, CONSIDER CHANGING THE FUNCTIONALITY OF THE DATA GENERATING SCRIPTS, SO YOU CAN CHOOSE, WHICH OF THE 5 PARAMETERS (kappa, gammaA, gammaD, Pump. g) TO SWEEP OVER.
+
+We go through the structure of the scripts below.
 
 # Generating data
 ## perform_pump_sweep: 
@@ -36,7 +38,7 @@ input: physical parameters (pump is given as boundaries) and N_Hilbert
 
 2. for each pump: call getSteady state. Calculate nP and g2
 
-out: no outout, but saves an numpyzip-file in the datafolder with nP (mean photon population) and g^(2)(0), and an np-array of corresponding values of pump/g
+out: no output, but saves an numpyzip-file in the datafolder with nP (mean photon population) and g^(2)(0), and an np-array of corresponding values of pump/g
 
 Further comments: this function is limited in the sense that for most pump-sweeps (when we reach lasing) a much bigger Hilbert space is needed than for the small pump
 Preferably, we should alter it so it takes in a list of N_Hilbert
@@ -50,7 +52,7 @@ input: physical parameters (pump is given as boundaries)
       Update: we have moved the old version of conv crit to the deprecated folder.
       We have now implemented and tested a convergence criterion where we consider the population in the higest photon state included
       
-out: no outout, but saves an numpyzip-file in the datafolder with nP (mean photon population), g^(2)(0), 
+out: no output, but saves an numpyzip-file in the datafolder with nP (mean photon population), g^(2)(0), 
 N_Hilbert used, Occupation propability for N_Hilbert photon population, and emitter occupation, and an np-array of corresponding values of pump/g
 
 ## getSteadyState. Function
@@ -75,14 +77,17 @@ input: physical parameters and N_Hilbert
       Should consider: how do we choose frequencylist best
 return: frequencylist and spectrum
 
-getLinewidth. Function
+## getLinewidth. Function
 input: physical parameters
+
 imports spectrum data and calculates and saves linewidth
 
 # analysing data
 ## plot_linewidths: 
-from generated data; makes a single plot of the linewidth with a lot of comparison
+from generated data; makes a single plot of the linewidth with a lot of comparisons
 
 ## superplot_regimes
+plots sweeps over photon number, the g2-function, the spectrum, and the linewidth with shared 1st axis of pumping strengths.
 
 ## comparison of N emitter to effective 1-emitter
+Makes a plot of the same type as in Figure 5 in special course report.
